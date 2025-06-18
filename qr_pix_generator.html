@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de QR Code PIX</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }
+    textarea { width: 90%; max-width: 500px; height: 100px; margin-top: 10px; padding: 10px; }
+    button { margin-top: 10px; padding: 10px 20px; font-size: 16px; }
+    #qrcode { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>Generador de Código QR para PIX</h2>
+  <p>Pega aquí tu código "copia y pega" del PIX:</p>
+  <textarea id="pixCode" placeholder="Pega tu código PIX aquí..."></textarea><br>
+  <button onclick="generateQRCode()">Generar código QR</button>
+  <div id="qrcode"></div>
+
+  <script>
+    function generateQRCode() {
+      const pixCode = document.getElementById("pixCode").value.trim();
+      const qrContainer = document.getElementById("qrcode");
+      qrContainer.innerHTML = "";
+      if (pixCode.length > 0) {
+        new QRCode(qrContainer, {
+          text: pixCode,
+          width: 256,
+          height: 256,
+        });
+      } else {
+        alert("Por favor, pega un código válido.");
+      }
+    }
+  </script>
+</body>
+</html>
